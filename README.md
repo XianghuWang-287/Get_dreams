@@ -22,3 +22,20 @@ python3 dreams_from_mgf.py input_mgf_path.mgf embeddings_output.parquet
 ```
 
 Then DreaMS will download its embedding model if it isnt downloaded yet.
+
+
+## Run it in docker
+
+```
+make build-docker
+```
+
+Then you can run the container with:
+
+```
+make run-docker
+``` 
+
+```
+python3 dreams_from_mgf.py input_mgf_path.mgf embeddings_output.parquet
+```
