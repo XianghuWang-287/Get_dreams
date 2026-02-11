@@ -3,3 +3,6 @@ build-docker:
 
 run-docker:
 	docker run  -it -v $(PWD)/data:/data mingdreams:latest /bin/bash
+
+run-docker-gpu:
+	docker run --gpus all -it -v $(PWD)/data:/data mingdreams:latest /bin/bash

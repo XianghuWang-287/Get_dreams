@@ -33,9 +33,12 @@ make build-docker
 Then you can run the container with:
 
 ```
+cd data && sh ./get_data.sh
 make run-docker
 ``` 
 
+### Hello world for the script in docker
 ```
+source activate dreams_env
 python3 dreams_from_mgf.py input_mgf_path.mgf embeddings_output.parquet
 ```

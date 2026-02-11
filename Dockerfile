@@ -14,12 +14,18 @@ RUN wget https://github.com/conda-forge/miniforge/releases/latest/download/Minif
 ENV PATH=$CONDA_DIR/bin:$PATH
 
 # copy into DreaMS
-COPY . /DreaMS
+COPY ./DreaMS /DreaMS/DreaMS
 
 RUN mamba create -n dreams_env python==3.11.0 --yes
-WORKDIR /DreaMS
-RUN bash -c "source activate dreams_env && cd DreaMS && pip install -e ."
+WORKDIR /DreaMS/DreaMS
+RUN bash -c "source activate dreams_env && pip install -e ."
 
 # pip install chardet
 RUN bash -c "source activate dreams_env && pip install chardet"
 
+# setuptools
+RUN bash -c "source activate dreams_env && pip install setuptools"
+
+COPY . /DreaMS
+
+WORKDIR /DreaMS
