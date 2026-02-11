@@ -40,5 +40,8 @@ make run-docker
 ### Hello world for the script in docker
 ```
 source activate dreams_env
-python3 dreams_from_mgf.py input_mgf_path.mgf embeddings_output.parquet
+
+python ./dreams_from_mgf.py /data/astral_water_and_methanol_spectra_reformatted.mgf /dev/null
+
+#python3 dreams_from_mgf.py input_mgf_path.mgf embeddings_output.parquet
 ```
