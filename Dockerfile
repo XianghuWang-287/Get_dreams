@@ -5,8 +5,10 @@ FROM nvidia/cuda:12.4.0-runtime-ubuntu22.04
 
 
 # Update and install mini-conda
-RUN apt-get update && apt-get install -y time wget g++ libboost-all-dev git && \
-        apt-get clean
+RUN apt-get update && apt-get install -y \
+    time wget g++ libboost-all-dev git \
+    libxrender1 libxext6 libsm6 libglib2.0-0 \
+    && apt-get clean 
 
 # Install Mamba
 ENV CONDA_DIR /opt/conda
@@ -23,9 +25,10 @@ RUN bash -c "source activate dreams_env && pip install -e ."
 # pip install chardet
 RUN bash -c "source activate dreams_env && pip install chardet"
 
-# setuptools
-RUN bash -c "source activate dreams_env && pip install setuptools"
+RUN bash -c "source activate dreams_env && pip install 'setuptools<81.0'"
 
 COPY . /DreaMS
+
+RUN sed -i '1i import torch\nfrom functools import partial\ntorch.load = partial(torch.load, weights_only=False)' /DreaMS/DreaMS/dreams/api.py
 
 WORKDIR /DreaMS
